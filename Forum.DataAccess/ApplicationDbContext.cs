@@ -1,4 +1,5 @@
 ﻿using Forum.DataAccess.Entities;
+using Forum.DataAccess.Entities.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,16 @@ namespace Forum.DataAccess
         public DbSet<User> Users;
         public DbSet<UserInfo> UserInfo;
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new TopicConfiguration());
+            modelBuilder.ApplyConfiguration(new TopicMessageConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new UserInfoConfiguration());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

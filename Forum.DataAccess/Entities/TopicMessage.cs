@@ -3,7 +3,7 @@
 namespace Forum.DataAccess.Entities
 
 {
-    public class TopicMessage
+    public class TopicMessage: EntityBase
     {
         public string Text { get; set; }
 

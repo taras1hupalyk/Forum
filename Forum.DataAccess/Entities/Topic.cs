@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Forum.DataAccess.Entities
 
@@ -11,5 +12,6 @@ namespace Forum.DataAccess.Entities
 
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
+        public List<TopicMessage> TopicMessages { get; set; }
     }
 }
