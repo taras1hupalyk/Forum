@@ -1,3 +1,5 @@
+using Forum.BusinessLogic.Services;
+using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +35,9 @@ namespace Forum.API
             {
                 builder.UseSqlServer(Configuration.GetConnectionString("ForumDb"));
             });
-
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
