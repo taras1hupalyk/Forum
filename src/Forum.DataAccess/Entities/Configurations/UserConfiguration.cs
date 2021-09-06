@@ -17,6 +17,14 @@ namespace Forum.DataAccess.Entities.Configurations
             builder.HasOne(x => x.UserInfo)
                 .WithOne(x => x.User)                
                 .IsRequired(false);
+            builder.HasMany(x => x.Topics)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(x => x.TopicMessages)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
