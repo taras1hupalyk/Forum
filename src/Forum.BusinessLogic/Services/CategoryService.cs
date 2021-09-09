@@ -3,6 +3,7 @@ using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess;
 using Forum.DataAccess;
 using Forum.DataAccess.Entities;
+using Forum.DataAccess.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +14,18 @@ namespace Forum.BusinessLogic.Services
 {
     public class CategoryService : ICategoryService
     {
-        private IUnitOfWork _unitOfWork;
+        private ICategoryRepository categoryRepository;
 
-
-        public CategoryService(IUnitOfWork unitOfWork)
+        public CategoryService(ICategoryRepository categoryRepository)
         {
-            _unitOfWork = unitOfWork;
+            this.categoryRepository = categoryRepository;
         }
 
 
 
         public async Task<List<CategoryDTO>> GetAllCategoriesAsync()
         {
-            var result = await _unitOfWork.Categories.GetAllAsync();
+            var result = await categoryRepository.GetAllAsync();
 
             var mappedResult = result.Select(item => new CategoryDTO()
             {
@@ -43,7 +43,7 @@ namespace Forum.BusinessLogic.Services
                 Title = categoryDTO.Title,
                 Description = categoryDTO.Description
             };
-            var result = await _unitOfWork.Categories.InsertAsync(category);
+            var result = await categoryRepository.InsertAsync(category);
             return result;
         }
     }

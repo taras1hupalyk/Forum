@@ -14,6 +14,7 @@ namespace Forum.BusinessLogic.Services
 {
     public class UserService : IUserService
     {
+
         private IUserRepository some;
         private IUnitOfWork _unitOfWork;
 
@@ -21,13 +22,16 @@ namespace Forum.BusinessLogic.Services
         {
             this.some = some;
             _unitOfWork = unitOfWork;
+
         }
 
 
 
         public async Task<List<User>> GetAllUsersAsync()
         {
+
             var result = await some.GetAllAsync();
+
             return result;
         }
 
@@ -38,7 +42,7 @@ namespace Forum.BusinessLogic.Services
                 Nickname = userDTO.Nickname,
                 Role = userDTO.Role
             };
-          var result = await _unitOfWork.Users.InsertAsync(user);
+          var result = await userRepository.InsertAsync(user);
             return result;
         }
 
