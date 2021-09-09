@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.API", "Forum.API\Forum.API.csproj", "{AD35F429-77E7-4D9A-BD4E-31B4EE76901B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.API", "Forum.API\Forum.API.csproj", "{AD35F429-77E7-4D9A-BD4E-31B4EE76901B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.DataAccess", "Forum.DataAccess\Forum.DataAccess.csproj", "{E81864A6-2E9C-4510-9A3E-A04863E3379D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.DataAccess", "Forum.DataAccess\Forum.DataAccess.csproj", "{E81864A6-2E9C-4510-9A3E-A04863E3379D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.BusinessLogic", "Forum.BusinessLogic\Forum.BusinessLogic.csproj", "{5E4E4CB6-E131-4B21-BDC3-D509AE8954D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.BusinessLogic", "Forum.BusinessLogic\Forum.BusinessLogic.csproj", "{5E4E4CB6-E131-4B21-BDC3-D509AE8954D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{CEACE6D8-0BA2-45DD-BDE3-9F0E3D6A0A3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.Client", "Forum.Client\Forum.Client.csproj", "{91704B49-A9FE-490F-8A21-8122DC42AFFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{5E4E4CB6-E131-4B21-BDC3-D509AE8954D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E4E4CB6-E131-4B21-BDC3-D509AE8954D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E4E4CB6-E131-4B21-BDC3-D509AE8954D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91704B49-A9FE-490F-8A21-8122DC42AFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91704B49-A9FE-490F-8A21-8122DC42AFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91704B49-A9FE-490F-8A21-8122DC42AFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91704B49-A9FE-490F-8A21-8122DC42AFFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{91704B49-A9FE-490F-8A21-8122DC42AFFE} = {CEACE6D8-0BA2-45DD-BDE3-9F0E3D6A0A3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A5605BF-5CAC-47A0-9E97-B39BCC0C9F50}
