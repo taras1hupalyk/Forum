@@ -1,6 +1,8 @@
 using Forum.BusinessLogic.Services;
 using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess;
+using Forum.DataAccess.Repositories;
+using Forum.DataAccess.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,7 +39,8 @@ namespace Forum.API
             });
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
