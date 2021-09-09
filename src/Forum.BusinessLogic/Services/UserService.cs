@@ -3,6 +3,7 @@ using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess;
 using Forum.DataAccess.Entities;
 using Forum.DataAccess.Repositories;
+using Forum.DataAccess.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,12 @@ namespace Forum.BusinessLogic.Services
 {
     public class UserService : IUserService
     {
+        private IUserRepository some;
         private IUnitOfWork _unitOfWork;
 
-
-        public UserService(IUnitOfWork unitOfWork)
+        public UserService(IUserRepository some, IUnitOfWork unitOfWork)
         {
+            this.some = some;
             _unitOfWork = unitOfWork;
         }
 
@@ -25,7 +27,7 @@ namespace Forum.BusinessLogic.Services
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            var result = await _unitOfWork.Users.GetAllAsync();
+            var result = await some.GetAllAsync();
             return result;
         }
 
