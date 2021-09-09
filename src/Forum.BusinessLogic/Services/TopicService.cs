@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Forum.BusinessLogic.Services
 {
-    public class TopicService
+    class TopicService
     {
-        public TopicService()
+        public TopicService(int some)
         {
-
+            some++;
         }
 
     }

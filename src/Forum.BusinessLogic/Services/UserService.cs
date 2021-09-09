@@ -14,18 +14,24 @@ namespace Forum.BusinessLogic.Services
 {
     public class UserService : IUserService
     {
-        private IUserRepository userRepository;
 
-        public UserService(IUserRepository userRepository)
+        private IUserRepository some;
+        private IUnitOfWork _unitOfWork;
+
+        public UserService(IUserRepository some, IUnitOfWork unitOfWork)
         {
-            this.userRepository = userRepository;
+            this.some = some;
+            _unitOfWork = unitOfWork;
+
         }
 
 
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            var result = await userRepository.GetAllAsync();
+
+            var result = await some.GetAllAsync();
+
             return result;
         }
 
