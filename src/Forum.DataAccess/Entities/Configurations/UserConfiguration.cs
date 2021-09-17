@@ -9,8 +9,8 @@ namespace Forum.DataAccess.Entities.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(x => x.Nickname)
-                 .HasMaxLength(128);
+            builder.ToTable("Users");
+            
             builder.Property(x => x.Role)
                 .HasMaxLength(10);
 

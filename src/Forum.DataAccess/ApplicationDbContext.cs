@@ -1,5 +1,7 @@
 ﻿using Forum.DataAccess.Entities;
 using Forum.DataAccess.Entities.Configurations;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Forum.DataAccess
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext: IdentityDbContext<User, Role, Guid>
     {
-        public ApplicationDbContext( DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext( DbContextOptions options)
             :base(options)
         {
 
