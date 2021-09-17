@@ -33,7 +33,7 @@ namespace Forum.BusinessLogic.Services
         {
             var user = new User()
             {
-                Nickname = userDTO.Nickname,
+                
                 Role = userDTO.Role
             };
           var result = await _unitOfWork.Users.InsertAsync(user);

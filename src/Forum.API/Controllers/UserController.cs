@@ -2,6 +2,7 @@
 using Forum.BusinessLogic.Models;
 using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,12 @@ namespace Forum.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly UserManager<User> _userManager;
+        private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, UserManager<User> userManager)
         {
+            _userManager = userManager;
             _userService = userService;
         }
         // GET: api/<UserController>
