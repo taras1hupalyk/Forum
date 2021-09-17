@@ -1,7 +1,7 @@
 ﻿using Forum.BusinessLogic.Models;
 using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess;
-using Forum.DataAccess;
+
 using Forum.DataAccess.Entities;
 using System;
 using System.Collections.Generic;

@@ -1,9 +1,11 @@
 using Forum.BusinessLogic.Services;
 using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess;
+using Forum.DataAccess.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +37,10 @@ namespace Forum.API
             {
                 builder.UseSqlServer(Configuration.GetConnectionString("ForumDb"));
             });
+            services.AddIdentity<User, Role>(option => option.Lockout.MaxFailedAccessAttempts=5)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders(); 
+
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

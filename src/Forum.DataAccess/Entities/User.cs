@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 
 namespace Forum.DataAccess.Entities
 
 {
-    public class User: EntityBase
+    public class User: IdentityUser<Guid>
     {
-        public string Nickname { get; set; }
 
         public string Role { get; set; }
 
