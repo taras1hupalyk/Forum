@@ -1,3 +1,4 @@
+using Forum.API.Settings;
 using Forum.BusinessLogic.Services;
 using Forum.BusinessLogic.Services.Interfaces;
 using Forum.DataAccess;
@@ -17,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Forum.API.Extensions;
 
 namespace Forum.API
 {
@@ -37,9 +39,15 @@ namespace Forum.API
             {
                 builder.UseSqlServer(Configuration.GetConnectionString("ForumDb"));
             });
-            services.AddIdentity<User, Role>(option => option.Lockout.MaxFailedAccessAttempts=5)
+
+            services.AddIdentity<User, Role>(option => option.Lockout.MaxFailedAccessAttempts = 5)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders(); 
+                .AddDefaultTokenProviders();
+
+            services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
+            var jwtSettings = Configuration.GetSection("jwt").Get<JwtSettings>();
+            
+
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IUserService, UserService>();
@@ -48,7 +56,32 @@ namespace Forum.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Forum.API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Description = "Jwt containing userId claim",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+                var security =
+                new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme()
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id ="Bearer",
+                                Type =ReferenceType.SecurityScheme
+                            },
+                            UnresolvedReference = true
+                        },
+                        new List<string>()
+                    }
+                };
+                c.AddSecurityRequirement(security);
             });
+            services.AddAuth(jwtSettings);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +98,7 @@ namespace Forum.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuth();
 
             app.UseEndpoints(endpoints =>
             {

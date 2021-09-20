@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forum.BusinessLogic.Models
 {
-    public class UserSingInDTO
+    public class UserSignInDTO
     {
         public string Email { get; set; }
 

@@ -22,7 +22,7 @@ namespace Forum.DataAccess
         public DbSet<Category> Categories;
         public DbSet<Topic> Topics;
         public DbSet<TopicMessage> TopicMessages;
-        public DbSet<User> Users;
+       // public  DbSet<User> Users;
         public DbSet<UserInfo> UserInfo;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
