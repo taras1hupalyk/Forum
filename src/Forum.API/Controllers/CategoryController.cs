@@ -1,6 +1,7 @@
 ﻿using Forum.BusinessLogic.Models;
 using Forum.BusinessLogic.Services;
 using Forum.BusinessLogic.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,9 @@ namespace Forum.API.Controllers
             return "value";
         }
 
-        // POST api/<CategoryController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CategoryDTO categoryDTO)
+        [Authorize(Roles = "Moderator")]
+        public async Task<ActionResult> CreateCategory([FromBody] CategoryDTO categoryDTO)
         {
            var response = await _categoryService.AddCategoryAsync(categoryDTO);
             return Ok(response);

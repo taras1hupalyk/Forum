@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forum.BusinessLogic.Models
 {
-    public class UserSingUpDTO
+    public class UserSihnUpDTO
     {
         public string UserName { get; set; }
 
