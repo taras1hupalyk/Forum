@@ -33,7 +33,7 @@ namespace Forum.API.Controllers
         }
 
 
-        [HttpPost("singup")]
+        [HttpPost("signup")]
         public async Task<IActionResult> SignUp ([FromBody] UserSihnUpDTO userDTO)
         {
             var user = new User
@@ -50,7 +50,7 @@ namespace Forum.API.Controllers
         }
 
 
-        [HttpPost("singin")]
+        [HttpPost("signin")]
         public async Task<IActionResult> SignIn([FromBody] UserSignInDTO userDTO)
         {
             var user = _userManager.Users.SingleOrDefault(x => x.Email == userDTO.Email);

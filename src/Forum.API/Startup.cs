@@ -34,7 +34,6 @@ namespace Forum.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<ApplicationDbContext>(builder =>
             {
                 builder.UseSqlServer(Configuration.GetConnectionString("ForumDb"));
@@ -46,8 +45,6 @@ namespace Forum.API
 
             services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
             var jwtSettings = Configuration.GetSection("jwt").Get<JwtSettings>();
-            
-
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IUserService, UserService>();

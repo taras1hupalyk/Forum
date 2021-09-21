@@ -29,6 +29,7 @@ namespace Forum.BusinessLogic.Services
 
             var mappedResult = result.Select(item => new CategoryDTO()
             {
+                Id = item.Id,
                 Title = item.Title,
                 Description = item.Description
             }).ToList();
@@ -45,6 +46,16 @@ namespace Forum.BusinessLogic.Services
             };
             var result = await _unitOfWork.Categories.InsertAsync(category);
             return result;
+        }
+
+        public async Task DeleteCategory(Guid id)
+        {
+            var entity =  await _unitOfWork.Categories.GetCategoryById(id);
+            if (entity == null)
+            {
+                throw new Exception("There is no such a user in system");
+            }
+            await _unitOfWork.Categories.DeleteEntityAsync(entity);
         }
     }
 }

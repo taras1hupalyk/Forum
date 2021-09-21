@@ -30,12 +30,7 @@ namespace Forum.API.Controllers
             return response;
         }
 
-        // GET api/<CategoryController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        
 
         [HttpPost]
         [Authorize(Roles = "Moderator")]
@@ -45,16 +40,23 @@ namespace Forum.API.Controllers
             return Ok(response);
         }
 
-        // PUT api/<CategoryController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        
+        
 
-        // DELETE api/<CategoryController>/5
+        
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        //[Authorize(Roles ="Admin")]
+        public async Task<IActionResult> Delete(Guid id)
         {
+            try
+            {
+                await _categoryService.DeleteCategory(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

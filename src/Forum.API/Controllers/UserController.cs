@@ -33,11 +33,15 @@ namespace Forum.API.Controllers
             return Ok(response);
         }
 
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        
+
+        [HttpGet("user-roles")]
+        public async Task<IActionResult> GetUserRoles(string userName)
         {
-            return "value";
+            var user = _userService.GetUserByUserName(userName);
+            var result = await _userManager.GetRolesAsync(user);
+
+            return Ok(result);
         }
 
         // POST api/<UserController>
@@ -46,13 +50,7 @@ namespace Forum.API.Controllers
         {
            var result = await _userService.AddUser(user);
            return Ok(user);
-        }
-
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        }        
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]

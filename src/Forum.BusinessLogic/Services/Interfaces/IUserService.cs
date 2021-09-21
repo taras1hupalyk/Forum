@@ -8,7 +8,8 @@ namespace Forum.BusinessLogic.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<User> AddUser(UserDTO user);
-        Task<List<User>> GetAllUsersAsync();
+        public Task<User> AddUser(UserDTO user);
+        public Task<List<User>> GetAllUsersAsync();
+        public User GetUserByUserName(string userName);
     }
 }
