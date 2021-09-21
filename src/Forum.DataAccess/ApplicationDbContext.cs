@@ -19,11 +19,11 @@ namespace Forum.DataAccess
 
         }
 
-        public DbSet<Category> Categories;
-        public DbSet<Topic> Topics;
-        public DbSet<TopicMessage> TopicMessages;
-       // public  DbSet<User> Users;
-        public DbSet<UserInfo> UserInfo;
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Topic> Topics { get; set; }
+        public DbSet<TopicMessage> TopicMessages { get; set; }
+        // public  DbSet<User> Users;
+        public DbSet<UserInfo> UserInfo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

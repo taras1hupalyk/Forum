@@ -17,6 +17,10 @@ namespace Forum.DataAccess.Repositories
             this._dbContex = dbContext;
         }
 
-
+        public User GetUserByUserName(string userName)
+        {
+            var user = _dbContex.Users.Where(x => x.UserName == userName).FirstOrDefault();
+            return user;
+        }
     }
 }
